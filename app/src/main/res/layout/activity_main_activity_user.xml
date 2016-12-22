@@ -47,6 +47,6 @@
             android:layout_height="wrap_content"
             android:text="@string/Search"
             android:id="@+id/button14"
-            android:onClick="buttom7onClick" />
+            android:onClick="clickSearch" />
     </LinearLayout>
 </RelativeLayout>

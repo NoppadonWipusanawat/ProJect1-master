@@ -24,10 +24,10 @@ import org.json.JSONObject;
 public class MainActivityUser extends AppCompatActivity {
 
     private MyManage myManage;
-    private String urlJSON = "http://swiftcodingthai.com/pbru/get_room.php";
+    private String urlJSON = "http://swiftcodingthai.com/pbru/php_get_room.php";
 
     private EditText editText;
-    private String roomString;
+    private String classroomString;
     private String[] resultStrings;
 
     @Override
@@ -41,7 +41,7 @@ public class MainActivityUser extends AppCompatActivity {
 
 
 
-        //myManage.addRoom("build", "room", "lat", "lng", "icon");
+        //myManage.addRoom("room_name", "classroom", "room_lat", "room_lng", "images");
 
         deleteAllSQLite();
 
@@ -52,9 +52,9 @@ public class MainActivityUser extends AppCompatActivity {
 
     public void clickSearch(View view) {
 
-        roomString = editText.getText().toString().trim();
+        classroomString = editText.getText().toString().trim();
 
-        if (roomString.equals("")) {
+        if (classroomString.equals("")) {
             Toast.makeText(this, "กรุณากรอกหมายเลขห้อง", Toast.LENGTH_SHORT).show();
         } else {
             searchRoom();
@@ -67,7 +67,7 @@ public class MainActivityUser extends AppCompatActivity {
 
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM roomTABLE WHERE Room =" + "'" + roomString + "'", null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM roomTABLE WHERE classroom =" + "'" + classroomString + "'", null);
             cursor.moveToFirst();
 
             resultStrings = new String[cursor.getColumnCount()];
@@ -78,7 +78,7 @@ public class MainActivityUser extends AppCompatActivity {
             myAlert();
 
         } catch (Exception e) {
-            Toast.makeText(this, "ไม่มี " + roomString + " ในฐานข้อมูล", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ไม่มี " + classroomString + " ในฐานข้อมูล", Toast.LENGTH_SHORT).show();
 
         }
     }//searchRoom
@@ -87,7 +87,7 @@ public class MainActivityUser extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(R.drawable.bird48);
         builder.setCancelable(false);
-        builder.setTitle("ห้อง " + roomString);
+        builder.setTitle("ห้อง " + classroomString);
         builder.setMessage("อยู่ที่ อาคาร" + resultStrings[1]);
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
@@ -99,9 +99,9 @@ public class MainActivityUser extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                Intent intent = new Intent(MainActivityUser.this, MapsActivity.class);
-                intent.putExtra("Result", resultStrings);
-                startActivity(intent);
+                Intent nextPage = new Intent(MainActivityUser.this,MapsActivity.class);
+                nextPage.putExtra("PARAM", "Every man fight his own wars");
+                startActivity(nextPage);
 
                 dialogInterface.dismiss();
             }
@@ -109,13 +109,6 @@ public class MainActivityUser extends AppCompatActivity {
         builder.show();
 
     }//myAlesrt
-
-    public void clickListBuild(View view) {
-
-    }//ClickB
-    public void clickAdmin(View view) {
-
-    }
 
     public class SynRoom extends AsyncTask<Void, Void, String> {
 
@@ -150,13 +143,13 @@ public class MainActivityUser extends AppCompatActivity {
 
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                    String strBuild = jsonObject.getString(MyManage.column_Build);
-                    String strRoom = jsonObject.getString(MyManage.column_Room);
-                    String strLat = jsonObject.getString(MyManage.column_Lat);
-                    String strLng = jsonObject.getString(MyManage.column_Lng);
-                    String strIcon = jsonObject.getString(MyManage.column_Icon);
+                    String strroom_name = jsonObject.getString(MyManage.column_room_name);
+                    String strclassroom = jsonObject.getString(MyManage.column_classroom);
+                    String strroom_lat = jsonObject.getString(MyManage.column_room_lat);
+                    String strroom_long = jsonObject.getString(MyManage.column_room_long);
+                    String strimages = jsonObject.getString(MyManage.column_images);
 
-                    myManage.addRoom(strBuild, strRoom, strLat, strLng, strIcon);
+                    myManage.addRoom(strroom_name, strclassroom, strroom_lat, strroom_long, strimages);
 
                 }   // for
 
@@ -175,7 +168,7 @@ public class MainActivityUser extends AppCompatActivity {
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        sqLiteDatabase.delete(MyManage.room_table, null, null);
+        sqLiteDatabase.delete(MyManage.roomtable, null, null);
 
     }
 

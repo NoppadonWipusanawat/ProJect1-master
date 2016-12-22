@@ -8,16 +8,16 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class MyOpenHelper extends SQLiteOpenHelper{
 
-    public static final String database_name = "WherePbru.db";
+    public static final String database_name = "swiftcodin_pbru.db";
     private static final int database_version = 1;
 
     private static final String create_room_table = "create table roomTABLE (" +
-            "_id integer primary key," +
-            "Build text," +
-            "Room text," +
-            "Lat text," +
-            "Lng text," +
-            "Icon text);";
+            "room_id integer primary key," +
+            "room_name varchar," +
+            "classroom int," +
+            "room_lat float," +
+            "room_long float," +
+            "images text);";
 
     public MyOpenHelper(Context context) {
         super(context, database_name, null, database_version);

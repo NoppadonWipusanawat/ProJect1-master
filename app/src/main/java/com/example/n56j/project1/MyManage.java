@@ -11,13 +11,13 @@ public class MyManage {
     private MyOpenHelper myOpenHelper;
     private SQLiteDatabase sqLiteDatabase;
 
-    public static final String room_table = "roomTABLE";
-    public static final String column_id = "_id";
-    public static final String column_Build = "Build";
-    public static final String column_Room = "Room";
-    public static final String column_Lat = "Lat";
-    public static final String column_Lng = "Lng";
-    public static final String column_Icon = "Icon";
+    public static final String roomtable = "roomTABLE";
+    public static final String column_room_id = "room_id";
+    public static final String column_room_name = "room_name";
+    public static final String column_classroom = "classroom";
+    public static final String column_room_lat = "room_lat";
+    public static final String column_room_long = "room_long";
+    public static final String column_images = "images";
 
     public MyManage(Context context) {
 
@@ -26,20 +26,20 @@ public class MyManage {
 
     } //Constructor
 
-    public long addRoom(String strBuild,
-                        String strRoom,
-                        String strLat,
-                        String strLng,
-                        String strIcon) {
+    public long addRoom(String strroom_name,
+                        String strclassroom,
+                        String strroom_lat,
+                        String strroom_long,
+                        String strimages) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(column_Build, strBuild);
-        contentValues.put(column_Room, strRoom);
-        contentValues.put(column_Lat, strLat);
-        contentValues.put(column_Lng, strLng);
-        contentValues.put(column_Icon, strIcon);
+        contentValues.put(column_room_name, strroom_name);
+        contentValues.put(column_classroom, strclassroom);
+        contentValues.put(column_room_lat, strroom_lat);
+        contentValues.put(column_room_long, strroom_long);
+        contentValues.put(column_images, strimages);
 
-        return sqLiteDatabase.insert(room_table, null, contentValues);
+        return sqLiteDatabase.insert(roomtable, null, contentValues);
     }
 
 }   // Main Class
