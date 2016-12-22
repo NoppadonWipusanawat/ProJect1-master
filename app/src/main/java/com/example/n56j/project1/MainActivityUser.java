@@ -33,7 +33,7 @@ public class MainActivityUser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_activity_user);
 
         editText = (EditText) findViewById(R.id.editText33);
 
