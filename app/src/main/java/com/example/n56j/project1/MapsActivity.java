@@ -143,7 +143,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions()
                 .position(latLng)
                 .icon(BitmapDescriptorFactory
-                        .fromResource(R.drawable.doremon48)));
+                        .fromResource(R.drawable.User)));
 
     }
 
