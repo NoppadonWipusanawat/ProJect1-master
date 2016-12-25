@@ -17,10 +17,12 @@ public class AddEditActivity extends FragmentActivity implements OnMapReadyCallb
     private double latPbruADouble = 13.071865;
     private double lngPbruADouble = 99.976742;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_edit);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

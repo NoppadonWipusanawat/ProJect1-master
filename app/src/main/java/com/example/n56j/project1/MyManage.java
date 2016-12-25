@@ -11,7 +11,7 @@ public class MyManage {
     private MyOpenHelper myOpenHelper;
     private SQLiteDatabase sqLiteDatabase;
 
-    public static final String roomtable = "roomTABLE";
+    public static final String roomTABLE = "roomTABLE";
     public static final String column_room_id = "room_id";
     public static final String column_room_name = "room_name";
     public static final String column_classroom = "classroom";
@@ -26,7 +26,7 @@ public class MyManage {
 
     } //Constructor
 
-    public long addRoom(String strroom_name,
+    public long addroomTABLE(String strroom_name,
                         String strclassroom,
                         String strroom_lat,
                         String strroom_long,
@@ -39,7 +39,7 @@ public class MyManage {
         contentValues.put(column_room_long, strroom_long);
         contentValues.put(column_images, strimages);
 
-        return sqLiteDatabase.insert(roomtable, null, contentValues);
+        return sqLiteDatabase.insert(roomTABLE, null, contentValues);
     }
 
 }   // Main Class

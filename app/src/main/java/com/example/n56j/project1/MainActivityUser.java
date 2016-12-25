@@ -41,7 +41,7 @@ public class MainActivityUser extends AppCompatActivity {
 
 
 
-        //myManage.addRoom("room_name", "classroom", "room_lat", "room_lng", "images");
+        //myManage.addRoom("room_name", "classroom", "room_lat", "room_lnog", "images");
 
         deleteAllSQLite();
 
@@ -160,7 +160,7 @@ public class MainActivityUser extends AppCompatActivity {
                     String strroom_long = jsonObject.getString(MyManage.column_room_long);
                     String strimages = jsonObject.getString(MyManage.column_images);
 
-                    myManage.addRoom(strroom_name, strclassroom, strroom_lat, strroom_long, strimages);
+                    myManage.addroomTABLE(strroom_name, strclassroom, strroom_lat, strroom_long, strimages);
                 }   // for
 
 
@@ -169,7 +169,7 @@ public class MainActivityUser extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-        }   // onPost
+        }   // onPostU
 
     }   // SynRoom Class
 
@@ -178,7 +178,7 @@ public class MainActivityUser extends AppCompatActivity {
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                 MODE_PRIVATE, null);
-        sqLiteDatabase.delete(MyManage.roomtable, null, null);
+        sqLiteDatabase.delete(MyManage.roomTABLE, null, null);
 
     }
 
