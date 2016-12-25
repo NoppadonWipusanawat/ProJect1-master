@@ -2,6 +2,7 @@ package com.example.n56j.project1;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,6 +14,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class AddEditActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private double latPbruADouble = 13.071865;
+    private double lngPbruADouble = 99.976742;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

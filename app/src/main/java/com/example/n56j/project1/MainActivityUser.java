@@ -55,40 +55,42 @@ public class MainActivityUser extends AppCompatActivity {
         classroomString = editText.getText().toString().trim();
 
         if (classroomString.equals("")) {
-            Toast.makeText(this, "กรุณากรอกหมายเลขห้อง", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "กรุณากรอกหมายเลขห้อง ก่อน", Toast.LENGTH_SHORT).show();
         } else {
             searchRoom();
         }
 
-    }//ClickS
+    }   // clickSearch
 
     private void searchRoom() {
+
         try {
 
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyOpenHelper.database_name,
                     MODE_PRIVATE, null);
-            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM roomTABLE WHERE classroom =" + "'" + classroomString + "'", null);
+            Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM roomTABLE WHERE classroom = " + "'" + classroomString + "'", null);
             cursor.moveToFirst();
 
             resultStrings = new String[cursor.getColumnCount()];
             for (int i=0;i<cursor.getColumnCount();i++) {
                 resultStrings[i] = cursor.getString(i);
-            }//for
+            }   // for
 
             myAlert();
 
         } catch (Exception e) {
-            Toast.makeText(this, "ไม่มี " + classroomString + " ในฐานข้อมูล", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(this, "ไม่มี " + classroomString + " ในฐานข้อมูล ของเรา", Toast.LENGTH_SHORT).show();
         }
-    }//searchRoom
+
+    }   // searchRoom
 
     private void myAlert() {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setIcon(R.drawable.bird48);
+        builder.setIcon(R.drawable.build1);
         builder.setCancelable(false);
         builder.setTitle("ห้อง " + classroomString);
-        builder.setMessage("อยู่ที่ อาคาร" + resultStrings[1]);
+        builder.setMessage("อยู่ที่ อาคาร " + resultStrings[1]);
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -99,16 +101,25 @@ public class MainActivityUser extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                Intent nextPage = new Intent(MainActivityUser.this,MapsActivity.class);
-                nextPage.putExtra("PARAM", "Every man fight his own wars");
-                startActivity(nextPage);
+                Intent intent = new Intent(MainActivityUser.this, MapsActivity.class);
+                intent.putExtra("Result", resultStrings);
+                startActivity(intent);
 
                 dialogInterface.dismiss();
             }
         });
         builder.show();
 
-    }//myAlesrt
+
+    }   // myAlert
+
+    public void clickListBuild(View view) {
+
+    }
+
+    public void clickAdmin(View view) {
+
+    }
 
     public class SynRoom extends AsyncTask<Void, Void, String> {
 
@@ -150,7 +161,6 @@ public class MainActivityUser extends AppCompatActivity {
                     String strimages = jsonObject.getString(MyManage.column_images);
 
                     myManage.addRoom(strroom_name, strclassroom, strroom_lat, strroom_long, strimages);
-
                 }   // for
 
 

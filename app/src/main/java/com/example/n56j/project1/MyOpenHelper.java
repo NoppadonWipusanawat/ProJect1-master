@@ -11,8 +11,8 @@ public class MyOpenHelper extends SQLiteOpenHelper{
     public static final String database_name = "swiftcodin_pbru.db";
     private static final int database_version = 1;
 
-    private static final String create_room_table = "create table roomTABLE (" +
-            "room_id integer primary key," +
+    private static final String create_roomTABLE = "create table roomTABLE (" +
+            "room_id int primary key," +
             "room_name varchar," +
             "classroom int," +
             "room_lat float," +
@@ -25,7 +25,7 @@ public class MyOpenHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(create_room_table);
+        sqLiteDatabase.execSQL(create_roomTABLE);
     }
 
     @Override
